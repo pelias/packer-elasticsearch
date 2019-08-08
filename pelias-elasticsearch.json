@@ -24,7 +24,10 @@
     },
     "instance_type": "c5.large",
     "ssh_username": "ubuntu",
-    "ami_name": "pelias-elasticsearch-{{timestamp}}"
+    "ami_name": "pelias-elasticsearch-{{timestamp}}",
+    "tags": {
+      "Name": "pelias-elasticsearch-{{timestamp}}"
+    }
   }],
   "provisioners": [{
       "type": "file",

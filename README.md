@@ -20,7 +20,7 @@ Within the packer directory, create a file called `variables.json` and fill it i
 ```
 
 
-2. Runpacker
+2. Run packer
 
 Then, run packer using the following command:
 ```

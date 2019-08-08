@@ -60,6 +60,11 @@
       "environment_vars": [
         "ELASTICSEARCH_VERSION={{user `elasticsearch_version`}}"
       ]
+    },
+    {
+      "type": "shell",
+      "script": "scripts/utilities.sh"
     }
+
   ]
 }

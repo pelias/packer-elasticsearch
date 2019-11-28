@@ -1,33 +1,40 @@
 #!/bin/bash
 set -e
 
-# note: moved to shell script rather than being inline in a templatee file due to:
+# note: moved to shell script rather than being inline in a template file due to:
 # https://github.com/terraform-providers/terraform-provider-template/issues/51
+
+ELASTIC_RETRY_COUNT=${ELASTIC_RETRY_COUNT:-30}
+ELASTIC_RETRY_TIMEOUT=${ELASTIC_RETRY_TIMEOUT:-1}
 
 function elastic_status(){
   curl \
     --output /dev/null \
     --silent \
     --write-out "%{http_code}" \
-    "http://${ELASTIC_HOST:-localhost:9200}" || true;
+    "http://${ELASTIC_HOST:-localhost:9200}/_cluster/health?wait_for_status=yellow&timeout=1s" \
+      || true;
 }
 
 function elastic_wait(){
   echo 'waiting for elasticsearch service to come up';
-  retry_count=30
 
   i=1
-  while [[ "$i" -le "$retry_count" ]]; do
+  while [[ "$i" -le "${ELASTIC_RETRY_COUNT}" ]]; do
     if [[ $(elastic_status) -eq 200 ]]; then
-      echo
+      echo "Elasticsearch up!"
       exit 0
+    elif [[ $(elastic_status) -eq 408 ]]; then
+      # 408 indicates the server is up but not yet yellow status
+      printf ":"
+    else
+      printf "."
     fi
-    sleep 2
-    printf "."
+    sleep "${ELASTIC_RETRY_TIMEOUT}"
     i=$(($i + 1))
   done
 
-  echo
+  echo -e "\n"
   echo "Elasticsearch did not come up, check configuration"
   exit 1
 }

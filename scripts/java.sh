@@ -2,4 +2,4 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-sudo apt-get install openjdk-8-jre -y
+sudo apt-get install openjdk-11-jre -y

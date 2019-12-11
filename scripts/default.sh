@@ -5,8 +5,12 @@ export DEBIAN_FRONTEND=noninteractive
 # https://github.com/hashicorp/packer/issues/41
 sleep 30
 
+# 'DEBIAN_FRONTEND=noninteractive' is specified again for sudo
+# this resolved an issue with 'grub-pc' pausing for interactive input
+# the solution was suggested in a comment here, and sucessfully disables the interactive prompt:
+# https://askubuntu.com/questions/146921/how-do-i-apt-get-y-dist-upgrade-without-a-grub-config-prompt
 sudo apt-get update
-sudo apt-get upgrade -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 
 sudo apt-get install htop dstat jq -y
 

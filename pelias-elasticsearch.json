@@ -55,10 +55,6 @@
     },
     {
       "type": "shell",
-      "script": "scripts/java.sh"
-    },
-    {
-      "type": "shell",
       "script": "scripts/elasticsearch.sh",
       "environment_vars": [
         "ELASTICSEARCH_VERSION={{user `elasticsearch_version`}}"

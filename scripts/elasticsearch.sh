@@ -3,10 +3,10 @@
 cd /tmp
 
 # note: the download servers changed between elasticsearch versions
-ES5_HOST='artifacts.elastic.co/downloads/elasticsearch'
+ES_HOST='artifacts.elastic.co/downloads/elasticsearch'
 
 # download elasticsearch .deb package
-wget "https://${ES5_HOST}/elasticsearch-${ELASTICSEARCH_VERSION}.deb"
+wget "https://${ES_HOST}/elasticsearch-${ELASTICSEARCH_VERSION}.deb"
 
 # install .deb package
 sudo dpkg -i "elasticsearch-${ELASTICSEARCH_VERSION}.deb"

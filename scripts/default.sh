@@ -12,7 +12,7 @@ sleep 30
 sudo apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 
-sudo apt-get install htop dstat jq -y
+sudo apt-get install htop dstat jq awscli -y
 
 echo "elasticsearch soft nofile 128000
 elasticsearch hard nofile 128000

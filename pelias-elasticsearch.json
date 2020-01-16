@@ -1,6 +1,6 @@
 {
   "variables": {
-    "elasticsearch_version": "6.8.5",
+    "elasticsearch_version": "7.5.1-amd64",
     "aws_access_key": "",
     "aws_secret_key": "",
     "subnet_id": ""
@@ -52,10 +52,6 @@
     {
       "type": "shell",
       "script": "scripts/default.sh"
-    },
-    {
-      "type": "shell",
-      "script": "scripts/java.sh"
     },
     {
       "type": "shell",

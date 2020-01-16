@@ -15,7 +15,7 @@ Within the packer directory, create a file called `variables.json` and fill it i
 
 ```
 {
-  "elasticsearch_version": "6.8.5"
+  "elasticsearch_version": "7.5.1"
 }
 ```
 

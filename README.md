@@ -4,6 +4,10 @@ This repository contains [Packer](https://packer.io/) configuration for creating
 
 These AMIs are most useful with the [Terraform](https://github.com/pelias/terraform-elasticsearch) scripts for using Elasticsearch with Pelias.
 
+## Supported versions
+
+As of git tag `v7.0.0`, this project supports Elasticsearch *7* only. For Elasticsearch 5 or 6 support, use earlier versions.
+
 ### Setup Instructions
 
 

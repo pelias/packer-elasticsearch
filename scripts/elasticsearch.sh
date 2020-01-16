@@ -21,3 +21,10 @@ cd /usr/share/elasticsearch/bin
 sudo ./elasticsearch-plugin install --verbose --batch analysis-icu
 sudo ./elasticsearch-plugin install --verbose --batch repository-s3
 sudo ./elasticsearch-plugin install --verbose --batch discovery-ec2
+
+# enable the G1GC garbage collector on JVM10+
+# https://medium.com/naukri-engineering/garbage-collection-in-elasticsearch-and-the-g1gc-16b79a447181
+sudo sed -i 's/# 10-:-XX:-UseConcMarkSweepGC/10-:-XX:-UseConcMarkSweepGC/g' /etc/elasticsearch/jvm.options
+sudo sed -i 's/# 10-:-XX:-UseCMSInitiatingOccupancyOnly/10-:-XX:-UseCMSInitiatingOccupancyOnly/g' /etc/elasticsearch/jvm.options
+sudo sed -i 's/# 10-:-XX:+UseG1GC/10-:-XX:+UseG1GC/g' /etc/elasticsearch/jvm.options
+sudo sed -i 's/# 10-:-XX:InitiatingHeapOccupancyPercent=75/10-:-XX:InitiatingHeapOccupancyPercent=75/g' /etc/elasticsearch/jvm.options

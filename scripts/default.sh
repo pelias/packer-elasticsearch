@@ -12,6 +12,10 @@ sleep 30
 sudo apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 
+sudo chmod 777 /var/cache/debconf/
+sudo chmod 777 /var/cache/debconf/passwords.dat
+echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+
 sudo apt-get install htop dstat jq awscli -y
 
 echo "elasticsearch soft nofile 128000

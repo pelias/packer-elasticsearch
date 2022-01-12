@@ -3,7 +3,9 @@
     "elasticsearch_version": "7.16.1-amd64",
     "aws_access_key": "",
     "aws_secret_key": "",
-    "subnet_id": ""
+    "subnet_id": "",
+    "source_ami_name": "*ubuntu-bionic-18.04-amd64-server-*",
+    "instance_type": "c5.large"
   },
   "builders": [{
     "type": "amazon-ebs",
@@ -16,13 +18,13 @@
     "source_ami_filter": {
       "filters": {
         "virtualization-type": "hvm",
-        "name": "*ubuntu-bionic-18.04-amd64-server-*",
+        "name": "{{user `source_ami_name`}}",
         "root-device-type": "ebs"
       },
       "owners": ["099720109477"],
       "most_recent": true
     },
-    "instance_type": "c5.large",
+    "instance_type": "{{user `instance_type`}}",
     "ssh_username": "ubuntu",
     "ami_name": "pelias-elasticsearch-{{user `elasticsearch_version`}}-{{timestamp}}",
     "tags": {

@@ -19,5 +19,9 @@ sudo chown elasticsearch:elasticsearch -R .
 # see: https://www.elastic.co/guide/en/elasticsearch/plugins/5.6/cloud-aws.html
 cd /usr/share/elasticsearch/bin
 sudo ./elasticsearch-plugin install --verbose --batch analysis-icu
-sudo ./elasticsearch-plugin install --verbose --batch repository-s3
 sudo ./elasticsearch-plugin install --verbose --batch discovery-ec2
+
+# repository-s3 is a bundled module from Elasticsearch 8 onwards
+if [[ "${ELASTICSEARCH_VERSION%%.*}" == "7" ]]; then
+  sudo ./elasticsearch-plugin install --verbose --batch repository-s3
+fi

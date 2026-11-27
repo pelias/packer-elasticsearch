@@ -6,7 +6,9 @@ These AMIs are most useful with the [Terraform](https://github.com/pelias/terraf
 
 ## Supported versions
 
-As of git tag `v7.0.0`, this project supports Elasticsearch *7* only. For Elasticsearch 5 or 6 support, use earlier versions.
+This project supports Elasticsearch *7* and *8*. For Elasticsearch 5 or 6 support, use versions prior to git tag `v7.0.0`.
+
+Elasticsearch 8 enables security by default, Pelias expects it to be disabled via `xpack.security.enabled: false` in `elasticsearch.yml`.
 
 ### Setup Instructions
 
@@ -19,7 +21,17 @@ Within the packer directory, create a file called `variables.json` and fill it i
 
 ```
 {
-  "elasticsearch_version": "7.16.1-amd64"
+  "elasticsearch_version": "8.19.25-amd64"
+}
+```
+
+To build an ARM image, also set the source AMI and instance type to match:
+
+```
+{
+  "elasticsearch_version": "8.19.25-arm64",
+  "source_ami_name": "*ubuntu-focal-20.04-arm64-server-*",
+  "instance_type": "c6g.large"
 }
 ```
 
